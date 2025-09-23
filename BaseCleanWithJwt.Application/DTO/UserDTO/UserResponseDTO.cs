@@ -1,11 +1,9 @@
-using BaseCleanWithJwt.Domain.Common;
+namespace BaseCleanWithJwt.Domain.DTO.UserDTO;
 
-namespace BaseCleanWithJwt.Domain.Entities;
-
-public class UserModel : BaseActivityModel
+public class UserResponseDTO
 {
+    public Guid Id { get; set; }
     public string Email { get; set; } = null!;
-    public string PasswordHash { get; set; } = null!;
     public string? FullName { get; set; }
     public string? Bio { get; set; }
     public string? AvatarUrl { get; set; }
