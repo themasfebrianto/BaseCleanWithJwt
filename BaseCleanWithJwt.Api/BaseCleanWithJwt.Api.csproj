@@ -8,7 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.17" />
+    <PackageReference Include="Serilog" Version="4.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="dotnetenv" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>

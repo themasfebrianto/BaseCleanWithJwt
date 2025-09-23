@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace BaseCleanWithJwt.Domain.Common;
+namespace BaseCleanWithJwt.Domain.Common.Generic;
 
 public class FilterBase
 {

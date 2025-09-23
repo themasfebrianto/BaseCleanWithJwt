@@ -1,4 +1,4 @@
-using BaseCleanWithJwt.Domain.Common;
+using BaseCleanWithJwt.Domain.Common.Generic;
 
 namespace BaseCleanWithJwt.Domain.DTO.UserDTO;
 

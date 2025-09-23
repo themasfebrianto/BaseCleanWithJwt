@@ -1,34 +1,34 @@
+using BaseCleanWithJwt.Api.Extension;
+using BaseCleanWithJwt.Api.Middleware;
 using BaseCleanWithJwt.Application;
 using BaseCleanWithJwt.Infrastructure;
+using DotNetEnv;
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.AddSettings();
+builder.AddJwtAuthentication();
+builder.CreateCors();
+builder.ConfigureSwagger();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-
-builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", policy =>
-    {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
-    });
-});
+builder.Services.AddApplicationServices();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddCustomResponse();
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerApp();
+
 app.UseHttpsRedirection();
-app.UseCors("AllowAll");
 app.UseAuthentication();
+app.UseCustomResponse(app.Environment);
+
 app.UseAuthorization();
 app.MapControllers();
+app.ConfigureCors();
+
 app.Run();
