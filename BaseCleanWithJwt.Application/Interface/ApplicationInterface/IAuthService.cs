@@ -2,7 +2,7 @@
 using BaseCleanWithJwt.Domain.DTO.AuthDTO;
 using BaseCleanWithJwt.Domain.DTO.UserDTO;
 
-namespace BaseCleanWithJwt.Application.Interface.ServiceInterface;
+namespace BaseCleanWithJwt.Application.Interface.ApplicationInterface;
 
 public interface IAuthService
 {

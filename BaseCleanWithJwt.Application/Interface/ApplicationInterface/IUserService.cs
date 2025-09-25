@@ -1,6 +1,6 @@
 using BaseCleanWithJwt.Domain.DTO.UserDTO;
 
-namespace BaseCleanWithJwt.Application.Interface.ServiceInterface;
+namespace BaseCleanWithJwt.Application.Interface.ApplicationInterface;
 
 public interface IUserService
 {
@@ -8,6 +8,7 @@ public interface IUserService
     Task<UserResponseDTO> UpdateOneAsync(UserRequestDTO request);
     Task<bool> DeleteOneAsync(Guid id);
     Task<UserResponseDTO?> GetByIdAsync(Guid id);
+    Task<UserResponseDTO?> GetByEmailAsync(string email);
     Task<List<UserResponseDTO>> GetAllAsync();
     Task<bool> ChangePasswordAsync(Guid id, string oldPwd, string newPwd);
     Task<bool> SoftDeleteAsync(Guid id);

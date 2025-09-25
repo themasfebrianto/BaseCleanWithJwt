@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 
-namespace BaseCleanWithJwt.Application.Interface.ServiceInterface;
+namespace BaseCleanWithJwt.Application.Interface.InfrastructureInterface;
 
 public interface IImageStorageService
 {

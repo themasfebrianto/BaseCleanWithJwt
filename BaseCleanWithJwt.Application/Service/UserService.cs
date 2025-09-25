@@ -1,8 +1,7 @@
-using BaseCleanWithJwt.Application.Interface.RepositoryInterface;
-using BaseCleanWithJwt.Application.Interface.ServiceInterface;
+using BaseCleanWithJwt.Application.Interface.ApplicationInterface;
+using BaseCleanWithJwt.Application.Interface.InfrastructureInterface;
 using BaseCleanWithJwt.Application.Mapping;
 using BaseCleanWithJwt.Domain.DTO.UserDTO;
-using BaseCleanWithJwt.Domain.Entities;
 
 namespace BaseCleanWithJwt.Application.Service;
 
@@ -39,7 +38,8 @@ public class UserService(
         if (request.AvatarFile != null)
             user.AvatarUrl = await imageStorageService.UploadAsync(request.AvatarFile);
 
-        var userRes = await repository.InsertOneAsync(user);
+        var isUserCreated = await repository.InsertOneAsync(user);
+        var userRes = await repository.GetByEmailAsync(request.Email) ?? throw new Exception("User creation failed");
         return userRes.MapToUserResponseDTO();
     }
 

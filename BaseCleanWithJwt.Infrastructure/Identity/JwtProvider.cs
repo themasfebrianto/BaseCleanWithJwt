@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using BaseCleanWithJwt.Application.Interface.InfrastructureInterface;
 using BaseCleanWithJwt.Domain.Common.Settings;
 using BaseCleanWithJwt.Domain.Entities;
 using Microsoft.Extensions.Options;
@@ -9,11 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BaseCleanWithJwt.Infrastructure.Identity;
 
-public interface IJwtProvider
-{
-    string GenerateToken(UserModel UserModel);
-    string GenerateRefreshToken();
-}
+
 
 public class JwtProvider(IOptions<JwtSettings> settings) : IJwtProvider
 {

@@ -1,37 +1,42 @@
-using BaseCleanWithJwt.Application.Interface.RepositoryInterface;
+using BaseCleanWithJwt.Application.Interface.InfrastructureInterface;
 using BaseCleanWithJwt.Domain.Entities;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 
 namespace BaseCleanWithJwt.Infrastructure.MongoDb.Repository;
 
-public class RoleRepository : IRoleRepository
+public class RoleRepository(IMongoDbContext context, IOptions<MongoDbSettings> settings) : IRoleRepository
 {
-    public Task<RoleModel> CreateRole(RoleModel role)
+    private readonly IMongoCollection<RoleModel> _collection = context.GetMongoCollection<RoleModel>(settings.Value.RoleCollection);
+    public async Task<RoleModel> CreateRole(RoleModel role)
     {
-        throw new NotImplementedException();
+        await _collection.InsertOneAsync(role);
+        return role;
     }
 
-    public Task<bool> DeleteRole(int id)
+    public async Task<bool> DeleteRole(Guid id)
     {
-        throw new NotImplementedException();
+        await _collection.DeleteOneAsync(u => u.Id == id);
+        return true;
     }
 
-    public Task<List<RoleModel>> GetAllRoles()
+    public async Task<List<RoleModel>> GetAllRoles()
     {
-        throw new NotImplementedException();
+        return await _collection.Find(_ => true).ToListAsync();
     }
 
-    public Task<RoleModel> GetRoleById(int id)
+    public Task<RoleModel> GetRoleById(Guid id)
     {
-        throw new NotImplementedException();
+        return _collection.Find(u => u.Id == id).FirstOrDefaultAsync();
     }
 
     public Task<RoleModel> GetRoleByName(string name)
     {
-        throw new NotImplementedException();
+        return _collection.Find(u => u.Name == name).FirstOrDefaultAsync();
     }
 
     public Task<RoleModel> UpdateRole(RoleModel role)
     {
-        throw new NotImplementedException();
+        return _collection.FindOneAndReplaceAsync(u => u.Id == role.Id, role);
     }
 }

@@ -1,5 +1,4 @@
-using BaseCleanWithJwt.Application.Interface.RepositoryInterface;
-using BaseCleanWithJwt.Domain.DTO.UserDTO;
+using BaseCleanWithJwt.Application.Interface.InfrastructureInterface;
 using BaseCleanWithJwt.Domain.Entities;
 using BaseCleanWithJwt.Infrastructure.MongoDb.Common;
 using Microsoft.Extensions.Options;
@@ -16,10 +15,10 @@ public class UserRepository(IMongoDbContext context, IOptions<MongoDbSettings> s
     public async Task<UserModel?> GetByIdAsync(Guid id) =>
         await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
-    public async Task<UserModel> InsertOneAsync(UserModel request)
+    public async Task<bool> InsertOneAsync(UserModel request)
     {
         await _collection.InsertOneAsync(request);
-        return request;
+        return true;
     }
 
     public async Task<UserModel> UpdateOneAsync(UserModel user)

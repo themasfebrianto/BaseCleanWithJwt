@@ -2,6 +2,7 @@ using BaseCleanWithJwt.Api.Extension;
 using BaseCleanWithJwt.Api.Middleware;
 using BaseCleanWithJwt.Application;
 using BaseCleanWithJwt.Infrastructure;
+using BaseCleanWithJwt.Infrastructure.MongoDb;
 using DotNetEnv;
 
 Env.Load();
@@ -13,6 +14,8 @@ builder.AddJwtAuthentication();
 builder.CreateCors();
 builder.ConfigureSwagger();
 
+MongoMappings.Register();
+
 builder.Services.AddInfrastructureServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddControllers();
@@ -23,7 +26,6 @@ var app = builder.Build();
 
 app.UseSwaggerApp();
 
-app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseCustomResponse(app.Environment);
 

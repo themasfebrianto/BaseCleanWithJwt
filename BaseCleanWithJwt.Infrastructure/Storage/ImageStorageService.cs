@@ -1,11 +1,11 @@
-
-using BaseCleanWithJwt.Application.Interface.ServiceInterface;
+using BaseCleanWithJwt.Application.Interface.ApplicationInterface;
+using BaseCleanWithJwt.Application.Interface.InfrastructureInterface;
 using Microsoft.AspNetCore.Http;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Webp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace BaseCleanWithJwt.Application.Service;
+namespace BaseCleanWithJwt.Infrastructure.Storage;
 
 public class ImageStorageService : IImageStorageService
 {
