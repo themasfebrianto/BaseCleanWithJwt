@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BaseCleanWithJwt.Application\BaseCleanWithJwt.Application.csproj" />
+    <ProjectReference Include="..\BaseCleanWithJwt.Domain\BaseCleanWithJwt.Domain.csproj" />
   </ItemGroup>
 
 </Project>
